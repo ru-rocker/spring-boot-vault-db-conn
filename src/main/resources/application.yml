@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: Hikari
+      maximum-pool-size: 5
+      auto-commit: false
+      connection-test-query: SELECT 1
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.connection.provider_disables_autocommit: true
+
+vault:
+  appconfig:
+    token: s.8EX65sqxYrwRKWUabwOpTtxq      
