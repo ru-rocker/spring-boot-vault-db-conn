@@ -17,6 +17,7 @@ import org.springframework.vault.support.VaultToken;
 import com.zaxxer.hikari.HikariDataSource;
 
 import id.co.allianz.vaulttest.config.AppConfig;
+import id.co.allianz.vaulttest.dto.Secrets;
 
 @SpringBootApplication
 public class VaultTestApplication implements CommandLineRunner {
@@ -44,17 +45,22 @@ public class VaultTestApplication implements CommandLineRunner {
                 new TokenAuthentication(login.getToken()));
         final VaultKeyValueOperations operations = vaultTemplate.opsForKeyValue("database",
                 KeyValueBackend.versioned());
+
+        // GET Response from Vault
         LOGGER.info("Resposne : {}", operations.get("postgres").getData());
+        LOGGER.info("Resposne : {}", operations.get("oracle/11g").getData());
+
+        // GET max pool config
         LOGGER.info("Max pool: {}", hds.getMaximumPoolSize());
 
-        // LOGGER.info("Resposne : {}", operations.get("oracle/11g").getData());
-        // final VaultTemplate vt = new VaultTemplate(appConfig.vaultEndpoint(), new TokenAuthentication("myroot"));
-        // final Secrets secrets = new Secrets();
-        // secrets.setUsername("hello");
-        // secrets.setPassword("password");
-        //
-        // final VaultKeyValueOperations keyValue = vt.opsForKeyValue("kv", KeyValueBackend.versioned());
-        // keyValue.put("secret", secrets);
+        // store key to vault
+        final VaultTemplate vt = new VaultTemplate(appConfig.vaultEndpoint(), new TokenAuthentication("myroot"));
+        final Secrets secrets = new Secrets();
+        secrets.setUsername("hello");
+        secrets.setPassword("password");
+
+        final VaultKeyValueOperations keyValue = vt.opsForKeyValue("kv", KeyValueBackend.versioned());
+        keyValue.put("secret", secrets);
 
     }
 
