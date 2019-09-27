@@ -20,48 +20,10 @@ import id.co.allianz.vaulttest.config.AppConfig;
 import id.co.allianz.vaulttest.dto.Secrets;
 
 @SpringBootApplication
-public class VaultTestApplication implements CommandLineRunner {
-
-    @Autowired
-    private AppConfig appConfig;
-
-    @Autowired
-    private DataSource dataSource;
+public class VaultTestApplication {
 
     public static void main(final String[] args) {
         SpringApplication.run(VaultTestApplication.class, args);
-    }
-
-    @Override
-    public void run(final String... args) throws Exception {
-
-        final HikariDataSource hds = (HikariDataSource) dataSource;
-
-        final Logger LOGGER = LoggerFactory.getLogger(VaultTestApplication.class);
-        final VaultToken login = appConfig.clientAuthentication().login();
-        LOGGER.info("Token: {}", login.getToken());
-
-        final VaultTemplate vaultTemplate = new VaultTemplate(appConfig.vaultEndpoint(),
-                new TokenAuthentication(login.getToken()));
-        final VaultKeyValueOperations operations = vaultTemplate.opsForKeyValue("database",
-                KeyValueBackend.versioned());
-
-        // GET Response from Vault
-        LOGGER.info("Resposne : {}", operations.get("postgres").getData());
-        LOGGER.info("Resposne : {}", operations.get("oracle/11g").getData());
-
-        // GET max pool config
-        LOGGER.info("Max pool: {}", hds.getMaximumPoolSize());
-
-        // store key to vault
-        final VaultTemplate vt = new VaultTemplate(appConfig.vaultEndpoint(), new TokenAuthentication("myroot"));
-        final Secrets secrets = new Secrets();
-        secrets.setUsername("hello");
-        secrets.setPassword("password");
-
-        final VaultKeyValueOperations keyValue = vt.opsForKeyValue("kv", KeyValueBackend.versioned());
-        keyValue.put("secret", secrets);
-
     }
 
 }

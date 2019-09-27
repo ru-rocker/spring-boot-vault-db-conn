@@ -17,4 +17,4 @@ spring:
 
 vault:
   appconfig:
-    token: s.8EX65sqxYrwRKWUabwOpTtxq      
+    token: ${TOKEN:default}

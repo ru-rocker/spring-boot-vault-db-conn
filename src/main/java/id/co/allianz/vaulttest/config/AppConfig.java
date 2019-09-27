@@ -28,8 +28,12 @@ public class AppConfig extends AbstractVaultConfiguration {
     @Override
     public ClientAuthentication clientAuthentication() {
         final VaultToken initialToken = VaultToken.of(token);
-        final AppRoleAuthenticationOptions options = AppRoleAuthenticationOptions.builder().appRole("database")
-                .roleId(RoleId.pull(initialToken)).secretId(SecretId.pull(initialToken)).build();
+        final AppRoleAuthenticationOptions options = AppRoleAuthenticationOptions
+                .builder()
+                .appRole("pg_service_1")
+                .roleId(RoleId.pull(initialToken))
+                .secretId(SecretId.pull(initialToken))
+                .build();
 
         return new AppRoleAuthentication(options, this.restOperations());
     }

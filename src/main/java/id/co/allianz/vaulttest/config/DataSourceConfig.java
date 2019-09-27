@@ -29,11 +29,11 @@ public class DataSourceConfig extends DataSourceProperties {
                 new TokenAuthentication(login.getToken()));
         final VaultKeyValueOperations operations = vaultTemplate.opsForKeyValue("database",
                 KeyValueBackend.versioned());
-        final Map<String, Object> data = operations.get("postgres").getData();
+        final Map<String, Object> data = operations.get("postgres/service_1").getData();
 
-        this.setUsername((String) data.get("database.username"));
-        this.setUrl((String) data.get("database.url"));
-        this.setPassword((String) data.get("database.password"));
+        this.setUsername((String) data.get("username"));
+        this.setUrl((String) data.get("url"));
+        this.setPassword((String) data.get("password"));
         super.afterPropertiesSet();
     }
 
