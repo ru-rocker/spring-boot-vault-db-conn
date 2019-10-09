@@ -1,4 +1,4 @@
-package id.co.allianz.vaulttest.dto;
+package com.rurocker.vaulttest.dto;
 
 import java.io.Serializable;
 

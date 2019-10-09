@@ -9,7 +9,7 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>id.co.allianz</groupId>
+	<groupId>com.rurocker</groupId>
 	<artifactId>vault-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>vault-test</name>

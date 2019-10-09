@@ -1,4 +1,4 @@
-package id.co.allianz.vaulttest;
+package com.rurocker.vaulttest;
 
 import javax.sql.DataSource;
 
@@ -14,10 +14,9 @@ import org.springframework.vault.core.VaultKeyValueOperationsSupport.KeyValueBac
 import org.springframework.vault.core.VaultTemplate;
 import org.springframework.vault.support.VaultToken;
 
+import com.rurocker.vaulttest.config.AppConfig;
+import com.rurocker.vaulttest.dto.Secrets;
 import com.zaxxer.hikari.HikariDataSource;
-
-import id.co.allianz.vaulttest.config.AppConfig;
-import id.co.allianz.vaulttest.dto.Secrets;
 
 @SpringBootApplication
 public class VaultTestApplication {

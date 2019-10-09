@@ -1,4 +1,4 @@
-package id.co.allianz.vaulttest.config;
+package com.rurocker.vaulttest.config;
 
 import java.util.Map;
 

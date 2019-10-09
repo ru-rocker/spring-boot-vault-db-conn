@@ -1,4 +1,4 @@
-package id.co.allianz.vaulttest;
+package com.rurocker.vaulttest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
